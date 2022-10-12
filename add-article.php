@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ]);
 $formdata= $_POST;
 
-print_r($formdata);
+/* print_r($formdata); */
 
 if ($formdata){
     if(!$formdata["titre"]){
@@ -90,12 +90,12 @@ function get_data() {
 
 $file_name='data'. '.json';
   
-/* if(file_put_contents("$file_name", get_data())) {
+if(file_put_contents("$file_name", get_data())) {
     echo 'success';
 }                
 else {
     echo 'There is some error';                
-} */
+}
 }
 
 ?>

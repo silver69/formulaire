@@ -1,15 +1,15 @@
 <?php
-// indiqué le chemin de votre fichier JSON, il peut s'agir d'une URL
+// indiqué le chemin de votre fichier JSON
 
-$fileNane="data.json";
+$toto="data.json";
 $article=array();
-if (file_exists ($fileName)) {
-    
+if (file_exists($toto)) {
+    $articles = json_decode(file_get_contents($toto));
 }
-$data = file_get_contents("$fileName");
+
+print_r ($toto)
 
 
-var_dump(json_decode($json));
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +18,7 @@ var_dump(json_decode($json));
 <head>
     <?php require_once './includes/head.php' ?>
     <title>Blog</title>
-    <link href="  assets/css/index.css" rel="stylesheet">
+    <link href="assets/css/index.css" rel="stylesheet">
 </head>
 
 <body>
@@ -26,41 +26,29 @@ var_dump(json_decode($json));
 
     <!-- liste cards -->
     <div class="container">
-        <div class="row align-items-center justify-content-center-between">
-            <!--  card-01 -->
-            <div class="col-md-4 text-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="assets/img/gallery-10.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Titre</h5>
-                        <a href="#" class="btn btn-primary">détail</a>
-                    </div>
+        <div class="content">
+            <!-- <?php if($articles){ ?> -->
+            <?php foreach ($articles as $article) { ?>
+            <div class="article">
+                <div class="imageArticle">
+                    <img src="<?=$article->image?>">
+                </div>
+                <div class="infoArticle">
+                    <span>
+                        <?= $article->title?>
+                        <!--                   </span>
+                    <form action="./article.php" method="POST" class="m-0">
+                        <input type="hidden" name="id" value="<?= $article->id ?>">
+                        <input type="hidden" name="action" value="detail">
+                        <button type="submit" class="btn btn-primary">Détail</button>
+                    </form> -->
                 </div>
             </div>
-            <!--  card-02 -->
-            <div class="col-md-4 text-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="assets/img/gallery-10.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Titre</h5>
-                        <a href="#" class="btn btn-primary">détail</a>
-                    </div>
-                </div>
-            </div>
-            <!--  card-03 -->
-            <div class="col-md-4 text-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="assets/img/gallery-10.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Titre</h5>
-                        <a href="#" class="btn btn-primary">détail</a>
-                    </div>
-                </div>
-            </div>
+            <?php } ?>
+            <?php } ?>
         </div>
-    </div>
 
-    <!--     fin card -->
+
     </div>
 
     </div>
